@@ -1,0 +1,90 @@
+/* Definizione base: 1rem = 16px */
+body {
+    background-color: #0F1115;
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem; /* Usato rem invece di px */
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #0F1115;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid #333;
+    gap: 1.5rem;
+    max-width: 90%; /* Impedisce alla barra di toccare i bordi su mobile */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.9rem; /* Scalabile */
+    font-family: Cambria, Cochin, Georgia, Times, serif;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20rem;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    transform: scale(1.1);
+    background-color: rgba(124, 156, 255, 0.2);
+    color: #7C9CFF;
+}
+
+/* Colore specifico per il link attivo */
+.nav-links a.active {
+    color: #7C9CFF !important; /* Forza il colore azzurro/viola */
+    background-color: rgba(124, 156, 255, 0.1); /* Uno sfondo leggero per evidenziarlo */
+    border-radius: 20rem;
+}
+
+/* Opzionale: rimuovi l'effetto hover se è già attivo */
+.nav-links a.active:hover {
+    transform: none; 
+}
+
+
+/* --- MEDIA QUERY PER MOBILE --- */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Impila gli elementi verticalmente */
+        border-radius: 20px;
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+        flex-wrap: wrap; /* Permette ai link di andare a capo */
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+    }
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    text-align: center;
+    color: #666;
+    font-size: 0.8rem;
+    pointer-events: none;
+}
