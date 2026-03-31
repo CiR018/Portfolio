@@ -1,10 +1,11 @@
 /* Definizione base: 1rem = 16px */
 body {
     background-color: #0F1115;
-    display: flex;
-    justify-content: center;
-    padding-top: 5rem; /* Usato rem invece di px */
     margin: 0;
+    display: flex;
+    flex-direction: column; /* FORZA GLI ELEMENTI UNO SOTTO L'ALTRO */
+    align-items: center;    /* CENTRA GLI ELEMENTI ORIZZONTALMENTE */
+    min-height: 100vh;
 }
 
 .navbar {
@@ -77,6 +78,250 @@ body {
     }
 }
 
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 5rem 10%; /* 10% di margine laterale dinamico */
+    min-height: 70vh;  /* Occupa gran parte dell'altezza schermo */
+    color: white;
+}
+
+.profile-image img {
+    width: 30rem;      /* Dimensione fissa per evitare che diventi gigante */
+    height: 30rem;
+    object-fit: cover; /* Taglia l'immagine bene se non è quadrata */
+    border-radius: 5%;
+    border: 0px solid #7C9CFF;
+    position: relative;
+    top: 2rem;
+}
+
+.profile-text {
+    max-width: 600px; /* Impedisce al testo di allungarsi troppo in orizzontale */
+}
+
+.profile-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.profile-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+
+/*pag skills*/
+/* Contenitore delle Skills */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 5rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden; /* Evita scrollbar durante l'animazione */
+}
+
+/* La singola tessera */
+.skill-card {
+    background-color: #1A1D23;
+    color: White;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    border: 1px solid #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    
+    /* Animazione */
+    opacity: 0; /* Parte invisibile */
+    transform: translateY(-100vh); /* Parte da fuori schermo in alto */
+    animation: dropIn 0.8s ease-out forwards;
+    animation-delay: var(--delay); /* Usa il ritardo impostato nell'HTML */
+}
+
+/* Definizione dell'animazione di caduta */
+@keyframes dropIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-100vh);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(20px); /* Effetto rimbalzo: scende un po' troppo... */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* ...e torna in posizione perfetta */
+    }
+}
+/*rimuovo sottolineatura a git hub*/
+.skill-card a {
+    text-decoration: none; /* Rimuove la sottolineatura */
+    color: inherit;        /* Eredita il colore dalla card (bianco o azzurro) */
+    align-items: center;
+}
+
+
+
+/* Hover sulle card */
+.skill-card:hover {
+    background-color: White;
+    color: #0F1115;
+    transform: scale(1.1);
+    transition: 0.3s;
+    cursor: default;
+}
+
+/*pagina contatti*/
+/* Contenitore Principale */
+.contact-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 160px);
+    padding: 2rem;
+}
+
+.contact-container {
+    text-align: center;
+    background: #1A1D23;
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    max-width: 500px;
+    width: 100%;
+}
+
+.contact-container h2 {
+    color: #7C9CFF;
+    margin-bottom: 2rem;
+}
+
+/* Bottoni Social */
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem; /* Riduciamo leggermente il margine inferiore */
+    flex-wrap: wrap;     /* Permette di andare a capo su schermi piccoli */
+}
+
+.social-btn {
+    text-decoration: none;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.linkedin { background-color: #0077b5; }
+.github { background-color: #333; border: 1px solid #444; }
+
+.social-btn:hover {
+    transform: translateY(-5px);
+    filter: brightness(1.2);
+}
+
+/* Bottone Espandibile */
+.expandable-contact {
+    margin-top: 2rem;
+    border-top: 1px solid #333;
+    padding-top: 2rem;
+}
+
+.contact-trigger {
+    background-color: #7C9CFF;
+    color: #0F1115;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.contact-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s;
+    opacity: 0;
+    margin-top: 1rem;
+    color: #ccc;
+}
+
+/* Effetto Ingrandimento e Mostra al Passaggio del Mouse */
+.expandable-contact:hover .contact-trigger {
+    transform: scale(1.1);
+    background-color: #fff;
+}
+
+.expandable-contact:hover .contact-content {
+    max-height: 100px;
+    opacity: 1;
+}
+
+.contact-content p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.contact-content i {
+    color: #7C9CFF; 
+    font-size: 1.2rem;
+}
+.cv-section {
+    margin: 1rem 0 1rem 0; /* Spazio bilanciato sopra e sotto */
+    display: flex;         /* Usiamo flex per centrare il bottone interno */
+    justify-content: center; 
+    width: 100%;           /* Occupa tutta la larghezza per spingere via altri elementi */
+}
+
+.btn-cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 2.5rem;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #7C9CFF; /* Bordo azzurro coordinato */
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-cv i {
+    font-size: 1.3rem;
+    color: #7C9CFF;
+}
+
+.btn-cv:hover {
+    background-color: #7C9CFF;
+    color: #0F1115;
+    box-shadow: 0 0 20px rgba(124, 156, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.btn-cv:hover i {
+    color: #0F1115;
+}
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -85,6 +330,6 @@ body {
     padding: 1.5rem 0;
     text-align: center;
     color: #666;
-    font-size: 0.8rem;
+    font-size: 1.2em;
     pointer-events: none;
 }
